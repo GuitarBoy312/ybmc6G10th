@@ -48,7 +48,7 @@ def generate_question():
 {speaker_b}: {selected_answer}
 """
     prompt = f"""{key_expression}을 생성해주세요. 
-    그 후 대화 내용에 관한 객관식 질문을 한국어로 만들어주세요.  
+    그 후 대화 내용에 관한 객관식 질문을 {korean_questions} 중에 골라주세요.  
     조건: 문제의 정답은 1개입니다.  
     영어 대화는 A와 B가 각각 1번씩 말하고 끝납니다.
     A는 다음과 같이 한문장을 말하세요.
