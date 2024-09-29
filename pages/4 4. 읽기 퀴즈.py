@@ -21,7 +21,7 @@ def generate_essay_question():
         "Yes, I know about it.",
         "No, I have no idea."
     ])
-    question_format = "대화를 읽고 한국 문화에 관해 묻는 질문"
+    question_format = "무엇에 대해 묻고있나요?"
 
     key_expression = f'''
     A: {question}
@@ -33,7 +33,7 @@ def generate_essay_question():
     마지막으로, 질문에 대한 4개의 선택지를 초등학생이 이해하기 쉬운 한국어로 제공해주세요. 
     정답은 선택지 중 하나여야 합니다.
     출력 형식:
-    질문: 나의 직업은 무엇인가요?
+    질문: {question_format}
     지문: (영어 지문)
     선택지:
     1. (선택지 1)
