@@ -15,25 +15,21 @@ SYSTEM_MESSAGE = {
     "content": '''
     너는 초등학교 영어교사야. 나는 초등학생이고, 나와 영어로 대화하는 연습을 해 줘. 영어공부와 관계없는 질문에는 대답할 수 없어. 그리고 나는 무조건 영어로 말할거야. 내 발음이 좋지 않더라도 영어로 인식하도록 노력해 봐.            
     [대화의 제목]
-    What are you doing?
+    What season do you like?
     [지시]
-    1. 내가 너에게 "What are you doing?" 이라고 질문을 할거야. 
+    1. 내가 너에게 "What season do you like?" 라고 질문을 할거야. 
     2. 너는 내 질문을 듣고, [대답] 중 하나를 무작위로 골래 대답을 해. 이 때, 이모지도 같이 출력해.
-    3. 그 후, 너는 "What are you doing?" 이라고 질문해. 
+    3. 그 후, 너는 "What about you?" 라고 질문해. 
        그러면 내가 대답을 할거야.
     4. 내가 또 질문을 하면 [대답]을 무작위로 선택해서 대답해.
     5. 내가 그만하자고 할 때까지 계속 주고 받으며 대화하자.
     [질문]
-    What are you doing?
+    What season do you like?
     [대답]
-    I'm singing. 🎤  
-    I'm dancing. 💃  
-    I'm cooking. 👨‍🍳  
-    I'm sleeping. 😴  
-    I'm making a doll. 🧸  
-    I'm cleaning the house. 🧹  
-    I'm watching TV. 📺  
-    I'm washing dishes. 🍽️ 
+    I like spring because I can see beautiful flowers. What about you? 🌸
+    I like summer because I can go swimming. What about you? 🏊
+    I like fall because the leaves are colorful. What about you? 🍁
+    I like winter because I can go skiing. What about you? ⛷️
     '''
 }
 
@@ -96,7 +92,7 @@ def text_to_speech_openai(text):
 
 # Streamlit UI
 st.header("✨인공지능 영어대화 선생님 잉글링👩‍🏫")
-st.subheader("지금 하고 있는 일에 대한 대화🕺")
+st.subheader("좋아하는 계절에 대한 대화🌸☀️🍂❄️")
 st.divider()
 
 # 처음부터 다시하기 버튼
@@ -123,17 +119,13 @@ with st.expander("❗❗ 글상자를 펼쳐 사용방법을 읽어보세요 �
     st.write("다음 보기와 같이 잉글링에게 질문과 대답을 해 보세요.")
     st.markdown('''
     [질문]<br>
-    🔸What are you doing? 🤔<br><br>
+    🔸What season do you like? 🤔<br><br>
     
     [대답]<br>
-    🔹I'm singing. 🎤<br>
-    🔹I'm dancing. 💃<br>
-    🔹I'm cooking. 👨‍🍳<br>
-    🔹I'm sleeping. 😴<br>
-    🔹I'm making a doll. 🧸<br>
-    🔹I'm cleaning the house. 🧹<br>
-    🔹I'm watching TV. 📺<br>
-    🔹I'm washing dishes. 🍽️<br>
+    🔹I like spring because I can see beautiful flowers.🌸What about you?<br>
+    🔹I like summer because I can go swimming. 🏊What about you?<br>
+    🔹I like fall because the leaves are colorful. 🍁What about you?<br>
+    🔹I like winter because I can go skiing. ⛷️What about you?<br>
     ❓ 어렵다면 잉글링의 답변을 따라하는 것도 좋은 방법이예요.
 ''', unsafe_allow_html=True)
 
