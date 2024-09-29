@@ -12,22 +12,18 @@ if 'current_question_type' not in st.session_state:
 
 def generate_essay_question():
     name = random.choice(["Paul", "Jello", "Uju", "Khan", "Eric", "Bora", "Tina", "Amy"])
-    question = "What are you doing?"
+    question = "What season do you like?"
     answer = random.choice([
-        "I'm singing.",
-        "I'm dancing.",
-        "I'm cooking.",
-        "I'm sleeping.",
-        "I'm making a doll.",
-        "I'm cleaning the house.",
-        "I'm watching TV.",
-        "I'm washing dishes."
+        "I like spring because I can see beautiful flowers.",
+        "I like summer because I can go swimming.",
+        "I like fall because the leaves are colorful.",
+        "I like winter because I can go skiing."
     ])
-    question_format = "대화를 읽고 무엇을 하고 있는지에 관해 묻는 질문"
+    question_format = "대화를 읽고 좋아하는 계절에 관해 묻는 질문"
 
     key_expression = f'''
-    A: What are you doing?
-    B: {answer}
+    A: What season do you like?
+    B: {answer} What about you?
     '''
     prompt = f"""
     {key_expression}을 이용하여CEFR A1 수준의 영어 지문을 1문장으로 작성해주세요. 
@@ -55,19 +51,17 @@ def generate_essay_question():
     return response.choices[0].message.content
 
 def generate_conversation_question():
+    question = "What season do you like?"
     answer = random.choice([
-     "I'm singing.",
-        "I'm dancing.",
-        "I'm cooking.",
-        "I'm sleeping.",
-        "I'm making a doll.",
-        "I'm cleaning the house.",
-        "I'm watching TV.",
-        "I'm washing dishes."])
-    question_format = "대화를 읽고 무엇을 하고 있는지에 관해 묻는 질문"
+        "I like spring because I can see beautiful flowers. What about you?",
+        "I like summer because I can go swimming. What about you?",
+        "I like fall because the leaves are colorful. What about you?",
+        "I like winter because I can go skiing. What about you?"
+    ])
+    question_format = "대화를 읽고 좋아하는 계절에 관해 묻는 질문"
 
     key_expression = f'''
-    A: What are you doing?
+    A: {question}
     B: {answer}
     '''
     prompt = f"""{key_expression}과 같은 구문을 사용 하는 CEFR A1 수준의 간단한 영어 대화를 생성해주세요. 
