@@ -11,19 +11,17 @@ if 'current_question_type' not in st.session_state:
     st.session_state.current_question_type = None
 
 def generate_essay_question():
-    name = random.choice(["Paul", "Jello", "Uju", "Khan", "Eric", "Bora", "Tina", "Amy"])
-    question = "What season do you like?"
+    topic = random.choice(["pansori", "yakgwa", "Hangeul"])
+    question = f"Do you know anything about {topic}?"
     answer = random.choice([
-        "I like spring because I can see beautiful flowers.",
-        "I like summer because I can go swimming.",
-        "I like fall because the leaves are colorful.",
-        "I like winter because I can go skiing."
+        "Yes, I know about it.",
+        "No, I have no idea."
     ])
-    question_format = "대화를 읽고 좋아하는 계절에 관해 묻는 질문"
+    question_format = "대화를 읽고 주제에 대한 지식 여부를 묻는 질문"
 
     key_expression = f'''
-    A: What season do you like?
-    B: {answer} What about you?
+    A: {question}
+    B: {answer}
     '''
     prompt = f"""
     {key_expression}을 이용하여CEFR A1 수준의 영어 지문을 1문장으로 작성해주세요. 
@@ -51,14 +49,13 @@ def generate_essay_question():
     return response.choices[0].message.content
 
 def generate_conversation_question():
-    question = "What season do you like?"
+    topic = random.choice(["pansori", "yakgwa", "Hangeul"])
+    question = f"Do you know anything about {topic}?"
     answer = random.choice([
-        "I like spring because I can see beautiful flowers. What about you?",
-        "I like summer because I can go swimming. What about you?",
-        "I like fall because the leaves are colorful. What about you?",
-        "I like winter because I can go skiing. What about you?"
+        "Yes, I know about it.",
+        "No, I have no idea."
     ])
-    question_format = "대화를 읽고 좋아하는 계절에 관해 묻는 질문"
+    question_format = "대화를 읽고 주제에 대한 지식 여부를 묻는 질문"
 
     key_expression = f'''
     A: {question}
@@ -208,7 +205,7 @@ def main():
 
     # 메인 화면 구성
     st.header("✨인공지능 영어 퀴즈 선생님 퀴즐링🕵️‍♀️")
-    st.subheader("지금 하고 있는 일에 대한 영어읽기 퀴즈🕺")
+    st.subheader("어떤것에 대해 알고있는지 묻고 답하기 영어읽기 퀴즈💡")
     st.divider()
 
     #확장 설명
