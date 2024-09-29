@@ -44,7 +44,7 @@ def generate_question():
 
 # 메인 화면 구성
 st.header("✨인공지능 영어단어 퀴즈 선생님 퀴즐링🕵️‍♀️")
-st.subheader("지금 하고 있는 일에 대한 영어단어 퀴즈🕺")
+st.subheader("어떤것에 대해 알고있는지 묻고 답하기 영어단어 퀴즈💡")
 st.divider()
 
 #확장 설명
