@@ -5,7 +5,7 @@ import random
 sentences = [
     ("Do you know anything about pansori?", "🎭"),
     ("Do you know anything about yakgwa?", "🍪"),
-    ("Do you know anything about Hangeul?", "🇰🇷"),
+    ("Do you know anything about Hangeul?", "ㄱㄴㄷ"),
     ("Yes, I know about it.", "👍"),
     ("No, I have no idea.", "🤷")
 ]
