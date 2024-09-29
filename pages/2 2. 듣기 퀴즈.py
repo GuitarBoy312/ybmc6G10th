@@ -43,10 +43,8 @@ def generate_question():
     if random.choice([True, False]):
         speaker_a, speaker_b = speaker_b, speaker_a
 
-    formatted_question = selected_question.format(name=speaker_b)
-    
     key_expression = f"""
-{speaker_a}: {formatted_question}
+{speaker_a}: {question}
 {speaker_b}: {selected_answer}
 """
     prompt = f"""{key_expression}을 생성해주세요. 
@@ -57,7 +55,7 @@ def generate_question():
     B는 다음과 같이 한문장을 말하세요.
     형식:
     [영어 대화]
-    A: {speaker_a}: {formatted_question}
+    A: {speaker_a}: {question}
     B: {speaker_b}: {selected_answer}
 
 
