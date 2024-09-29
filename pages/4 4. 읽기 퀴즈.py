@@ -62,7 +62,7 @@ def generate_conversation_question():
         "Yes, I know about it.",
         "No, I have no idea."
     ])
-    question_format = "대화를 읽고 한국 문화에 관해 묻는 질문"
+    question_format = random.choice(["무엇에 대해 묻고있나요?","{name}은 ....대해 알고있나요?"])    
 
     key_expression = f'''
     A: {name}, {question}?
