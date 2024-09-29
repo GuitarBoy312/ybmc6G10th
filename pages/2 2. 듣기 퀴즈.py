@@ -19,10 +19,10 @@ def generate_question():
     ]
     
     answers = [
-        "I like spring because I can see beautiful flowers. 🌸 What about you?",
-        "I like summer because I can go swimming. 🏊 What about you?",
-        "I like fall because the leaves are colorful. 🍁 What about you?",
-        "I like winter because I can go skiing. ⛷️ What about you?"
+        "I like spring because I can see beautiful flowers. 🌸",
+        "I like summer because I can go swimming. 🏊",
+        "I like fall because the leaves are colorful. 🍁",
+        "I like winter because I can go skiing. ⛷️"
     ]
     
     korean_questions = [
