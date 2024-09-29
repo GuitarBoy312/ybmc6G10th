@@ -120,9 +120,10 @@ with st.expander("❗❗ 글상자를 펼쳐 사용방법을 읽어보세요 �
     st.write("다음 보기와 같이 잉글링에게 질문과 대답을 해 보세요.")
     st.markdown('''                 
     [질문]<br>
-    🔸Do you know anything about pansori? 🎭<br>
-    🔸Do you know anything about yakgwa? 🍪<br>
-    🔸Do you know anything about Hangeul? 📝<br><br>
+    🔸Do you know anything about Korean food?🍪<br>
+    🔸Do you know anything about Squid game?🦑<br>
+    🔸Do you know anything about Korean pop?🎤<br>
+    <br>
     [대답]<br>
     🔹Yes, I know about it. 😊<br>
     🔹No, I have no idea. 🤔<br>
