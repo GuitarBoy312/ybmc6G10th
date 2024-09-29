@@ -14,22 +14,22 @@ characters = {
 }
 
 def generate_question():
-    questions = [
-        "What season do you like, {name}?"
-    ]
+    topics = ["판소리", "약과", "한글"]
+    
+    selected_topic = random.choice(topics)
+    
+    question = f"Do you know anything about {selected_topic}?"
     
     answers = [
-        "I like spring because I can see beautiful flowers. 🌸",
-        "I like summer because I can go swimming. 🏊",
-        "I like fall because the leaves are colorful. 🍁",
-        "I like winter because I can go skiing. ⛷️"
+        "Yes, I know about it.",
+        "No, I have no idea."
     ]
     
     korean_questions = [
-        "{name}은(는) 어떤 계절을 좋아하나요?"
+        "{name}은(는) {topics}에 대해 알고 있나요?",
+        "무엇에 대해 아는지 묻고 있나요?"
     ]
     
-    selected_question = random.choice(questions)
     selected_answer = random.choice(answers)
     selected_korean_question = random.choice(korean_questions)
     
@@ -62,7 +62,7 @@ def generate_question():
 
 
     [한국어 질문]
-    조건: {selected_korean_question.format(name=speaker_b)}을 만들어야 합니다.
+    조건: {selected_korean_question.format(name=speaker_b, topics=selected_topic) if "{name}" in selected_korean_question else selected_korean_question}을 만들어야 합니다.
     질문: (한국어로 된 질문) 이 때, 선택지는 한국어로 제공됩니다.
     A. (선택지)
     B. (선택지)
@@ -91,7 +91,7 @@ def split_dialogue(text):
     return speakers
 
 def text_to_speech(text, speaker):
-    voice = "alloy" if characters[speaker] == "female" else "echo"
+    voice = "nova" if characters[speaker] == "female" else "echo"
     response = client.audio.speech.create(
         model="tts-1",
         voice=voice,
@@ -140,7 +140,7 @@ def generate_explanation(question, correct_answer, user_answer, dialogue):
 
 # 메인 화면 구성
 st.header("✨인공지능 영어듣기 퀴즈 선생님 퀴즐링🕵️‍♀️")
-st.subheader("좋아하는 계절에 대한 영어듣기 퀴즈🍂🌸☀️❄️")
+st.subheader("지금 하고 있는 일에 대한 영어듣기 퀴즈🕺")
 st.divider()
 
 #확장 설명
