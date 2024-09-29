@@ -11,26 +11,29 @@ if 'current_question_type' not in st.session_state:
     st.session_state.current_question_type = None
 
 def generate_essay_question():
-    topic = random.choice(["pansori", "약과", "Hangeul"])
-    question = f"Do you know anything about {topic}?"
+    name = random.choice(["Tim", "Miso", "Yejun", "Jenny", "Rita", "Vianca"])
+    question = random.choice([
+        "Do you know anything about pansori?",
+        "Do you know anything about yakgwa?",
+        "Do you know anything about Hangeul?"
+    ])
     answer = random.choice([
         "Yes, I know about it.",
         "No, I have no idea."
     ])
-    question_format = "대화를 읽고 주제에 대한 지식 여부를 묻는 질문"
+    question_format = "대화를 읽고 한국 문화에 관해 묻는 질문"
 
     key_expression = f'''
     A: {question}
     B: {answer}
     '''
     prompt = f"""
-    {key_expression}을 이용하여CEFR A1 수준의 영어 지문을 1문장으로 작성해주세요. 
+    {answer}를 똑같이 1문장짜리 지문으로 만들어 주세요. 
     그 다음, 지문에 관한 간단한 질문을 한국어로 만들어주세요. 
-    질문을 만들 때, 지문에 맞는 화자를 포함해서 질문해 주세요. 예를 들어, 화자가 Tom이면 "톰이..." 로, 화자가 I면 "내가..."로 시작하는 질문을 생성해 주세요. A가 또는 B가로 시작하는 말은 하지마세요.
     마지막으로, 질문에 대한 4개의 선택지를 초등학생이 이해하기 쉬운 한국어로 제공해주세요. 
     정답은 선택지 중 하나여야 합니다.
     출력 형식:
-    질문: (한국어 질문)
+    질문: 나의 직업은 무엇인가요?
     지문: (영어 지문)
     선택지:
     1. (선택지 1)
@@ -49,23 +52,27 @@ def generate_essay_question():
     return response.choices[0].message.content
 
 def generate_conversation_question():
-    topic = random.choice(["pansori", "yakgwa", "Hangeul"])
-    question = f"Do you know anything about {topic}?"
+    name = random.choice(["Tim", "Miso", "Yejun", "Jenny", "Rita", "Vianca"])
+    question = random.choice([
+        "Do you know anything about pansori?",
+        "Do you know anything about yakgwa?",
+        "Do you know anything about Hangeul?"
+    ])
     answer = random.choice([
         "Yes, I know about it.",
         "No, I have no idea."
     ])
-    question_format = "대화를 읽고 주제에 대한 지식 여부를 묻는 질문"
+    question_format = "대화를 읽고 한국 문화에 관해 묻는 질문"
 
     key_expression = f'''
-    A: {question}
+    A: {name}, {question}?
     B: {answer}
     '''
-    prompt = f"""{key_expression}과 같은 구문을 사용 하는 CEFR A1 수준의 간단한 영어 대화를 생성해주세요. 
+    prompt = f"""{key_expression}과 똑같은 CEFR A1 수준의 간단한 영어 대화를 생성해주세요. 
     영어 대화를 생성할 때, 마지막 대화 내용은 알려주지 말고대화 내용에 관한 객관식 질문으로 만들어야 합니다. 
     그 후 대화 내용에 관한 객관식 질문을 한국어로 만들어주세요.  
     조건: 문제의 정답은 1개 입니다. 
-    A와 B가 대화할 때 상대방의 이름을 부르면서 대화를 합니다. 
+    A와 B가 대화할 때 A가 B의 이름을 부르면서 대화를 합니다. B의 이름은 {name} 입니다.
     영어 대화는 A와 B가 각각 1번 말하고 끝납니다.
     형식:
     [영어 대화]
@@ -178,7 +185,7 @@ def get_explanation_essay(question, passage, correct_answer, selected_option):
 
 def get_explanation_dialogue(question, dialogue, correct_answer, selected_option):
     prompt = f"""
-    이 학생에게  정답이 무엇인지, 그들의 답변이 왜 틀렸는지, 학생이 방금 선택한 답변을 영어로 표현하면 무엇인지 설명해주세요.
+    이 학생에게  정답이 무엇인지, 그들의 답변이 왜 틀렸는지, 학생이 방금 선택한 답변을 영어로 표현하면 무엇인지 설명해주세요.  
     설명은 친절하고 격려하는 톤으로 작성해주세요. 
     대화의 내용을 참조하여 구체적으로 설명해주세요.
 
@@ -205,7 +212,7 @@ def main():
 
     # 메인 화면 구성
     st.header("✨인공지능 영어 퀴즈 선생님 퀴즐링🕵️‍♀️")
-    st.subheader("어떤것에 대해 알고있는지 묻고 답하기 영어읽기 퀴즈💡")
+    st.subheader("직업을 묻고 답하기 영어읽기 퀴즈👨‍🚀👩‍🚒")
     st.divider()
 
     #확장 설명
