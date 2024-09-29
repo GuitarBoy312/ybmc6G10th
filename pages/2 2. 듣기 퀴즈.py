@@ -15,22 +15,18 @@ characters = {
 
 def generate_question():
     questions = [
-        "What are you doing, {name}?"
+        "What season do you like, {name}?"
     ]
     
     answers = [
-        "I'm singing.",
-        "I'm dancing.",
-        "I'm cooking.",
-        "I'm sleeping.",
-        "I'm making a doll.",
-        "I'm cleaning the house.",
-        "I'm watching TV.",
-        "I'm washing dishes."
+        "I like spring because I can see beautiful flowers. 🌸 What about you?",
+        "I like summer because I can go swimming. 🏊 What about you?",
+        "I like fall because the leaves are colorful. 🍁 What about you?",
+        "I like winter because I can go skiing. ⛷️ What about you?"
     ]
     
     korean_questions = [
-        "{name}은(는) 지금 무엇을 하고 있나요?"
+        "{name}은(는) 어떤 계절을 좋아하나요?"
     ]
     
     selected_question = random.choice(questions)
@@ -144,7 +140,7 @@ def generate_explanation(question, correct_answer, user_answer, dialogue):
 
 # 메인 화면 구성
 st.header("✨인공지능 영어듣기 퀴즈 선생님 퀴즐링🕵️‍♀️")
-st.subheader("지금 하고 있는 일에 대한 영어듣기 퀴즈🕺")
+st.subheader("좋아하는 계절에 대한 영어듣기 퀴즈🍂🌸☀️❄️")
 st.divider()
 
 #확장 설명
