@@ -24,9 +24,9 @@ SYSTEM_MESSAGE = {
     4. 내가 또 질문을 하면 [대답]을 무작위로 선택해서 대답해.
     5. 내가 그만하자고 할 때까지 계속 주고 받으며 대화하자.
     [질문]
-    Do you know anything about pansori? 🎭
-    Do you know anything about yakgwa? 🍪
-    Do you know anything about Hangeul? 📝
+    Do you know anything about 판소리? 🎭
+    Do you know anything about 약과? 🍪
+    Do you know anything about 한글? 📝
     [대답]
     Yes, I know about it. 😊
     No, I have no idea. 🤔  
