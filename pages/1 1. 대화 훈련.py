@@ -25,10 +25,9 @@ SYSTEM_MESSAGE = {
     5. 내가 그만하자고 할 때까지 계속 주고 받으며 대화하자.
     [질문]
     Do you know anything about K-pop? 🎤
-    Do you know anything about Buldak ramen? 🍪
+    Do you know anything about Squid game? 🍪
     Do you know anything about K-dramas? 
-    Do you know anything about Kimchi?
-    Do you know anything about Bulgogi? 
+    
     [대답]
     Yes, I know about it. 😊
     No, I have no idea. 🤔  
