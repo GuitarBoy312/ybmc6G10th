@@ -11,7 +11,7 @@ if 'current_question_type' not in st.session_state:
     st.session_state.current_question_type = None
 
 def generate_essay_question():
-    topic = random.choice(["pansori", "yakgwa", "Hangeul"])
+    topic = random.choice(["pansori", "약과", "Hangeul"])
     question = f"Do you know anything about {topic}?"
     answer = random.choice([
         "Yes, I know about it.",
