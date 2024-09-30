@@ -20,6 +20,14 @@ def generate_question():
     
     return blanked_sentence, emoji, correct_word
 
+# 세션 상태 초기화
+if 'question_generated' not in st.session_state:
+    st.session_state.question_generated = False
+    st.session_state.blanked_sentence = ""
+    st.session_state.emoji = ""
+    st.session_state.correct_word = ""
+    st.session_state.reset_input = False  # reset_input 초기화 추가
+
 # Streamlit UI
 st.header("✨인공지능 영어문장 퀴즈 선생님 퀴즐링🕵️‍♀️")
 st.subheader("어떤것에 대해 알고있는지 묻고 답하기 영어쓰기 퀴즈💡")
@@ -38,17 +46,6 @@ with st.expander("❗❗ 글상자를 펼쳐 사용방법을 읽어보세요 �
     🙏 그럴 때에는 [새 문제 만들기] 버튼을 눌러주세요.
     """
     , unsafe_allow_html=True)
-
-# 세션 상태 초기화
-if 'question_generated' not in st.session_state:
-    st.session_state.question_generated = False
-    st.session_state.blanked_sentence = ""
-    st.session_state.emoji = ""
-    st.session_state.correct_word = ""
-    st.session_state.reset_input = False
-
-def reset_input():
-    st.session_state.reset_input = True
 
 if st.session_state.question_generated:
     st.markdown("### 문제")
@@ -83,7 +80,7 @@ if st.session_state.question_generated:
                     st.error(f"틀렸습니다. 정답은 {st.session_state.correct_word}입니다.")
                     st.markdown(f'<p style="font-size: 24px;">정답 문장: {st.session_state.blanked_sentence.replace("_____", st.session_state.correct_word)} {st.session_state.emoji}</p>', unsafe_allow_html=True)
                 
-                reset_input()  # 정답 확인 후 입력 초기화 플래그 설정
+                st.session_state.reset_input = True  # 정답 확인 후 입력 초기화 플래그 설정
             else:
                 st.warning("답을 입력해주세요.")
 
@@ -95,8 +92,7 @@ if st.button("새 문제 만들기"):
     st.session_state.emoji = emoji
     st.session_state.correct_word = correct_word
     st.session_state.question_generated = True
-    reset_input()  # 입력 초기화 플래그 설정
+    st.session_state.reset_input = True  # 입력 초기화 플래그 설정
     
     # 페이지 새로고침
     st.rerun()
-
