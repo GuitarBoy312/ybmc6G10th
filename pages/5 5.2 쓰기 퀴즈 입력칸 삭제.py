@@ -26,7 +26,11 @@ if 'question_generated' not in st.session_state:
     st.session_state.blanked_sentence = ""
     st.session_state.emoji = ""
     st.session_state.correct_word = ""
-    st.session_state.reset_input = False  # reset_input 초기화 추가
+    st.session_state.user_input = ""  # 사용자 입력을 저장할 변수 추가
+
+# 사용자 입력을 초기화하는 함수
+def reset_input():
+    st.session_state.user_input = ""
 
 # Streamlit UI
 st.header("✨인공지능 영어문장 퀴즈 선생님 퀴즐링🕵️‍♀️")
@@ -53,12 +57,7 @@ if st.session_state.question_generated:
     st.markdown(f'<p style="font-size: 24px; margin-top: 10px;">{st.session_state.blanked_sentence} {st.session_state.emoji}</p>', unsafe_allow_html=True)
       
     with st.form(key='answer_form'):
-        if st.session_state.reset_input:
-            st.session_state.reset_input = False
-            user_input = st.text_input("정답을 입력하세요:", key="user_input", value="")
-        else:
-            user_input = st.text_input("정답을 입력하세요:", key="user_input")
-        
+        user_input = st.text_input("정답을 입력하세요:", key="user_input", value=st.session_state.user_input)
         submit_button = st.form_submit_button(label='정답 확인')
 
         if submit_button:
@@ -80,7 +79,7 @@ if st.session_state.question_generated:
                     st.error(f"틀렸습니다. 정답은 {st.session_state.correct_word}입니다.")
                     st.markdown(f'<p style="font-size: 24px;">정답 문장: {st.session_state.blanked_sentence.replace("_____", st.session_state.correct_word)} {st.session_state.emoji}</p>', unsafe_allow_html=True)
                 
-                st.session_state.reset_input = True  # 정답 확인 후 입력 초기화 플래그 설정
+                reset_input()  # 정답 확인 후 입력 초기화
             else:
                 st.warning("답을 입력해주세요.")
 
@@ -92,7 +91,10 @@ if st.button("새 문제 만들기"):
     st.session_state.emoji = emoji
     st.session_state.correct_word = correct_word
     st.session_state.question_generated = True
-    st.session_state.reset_input = True  # 입력 초기화 플래그 설정
+    reset_input()  # 새 문제 생성 시 입력 초기화
     
     # 페이지 새로고침
     st.rerun()
+
+# 세션 상태의 user_input 업데이트
+st.session_state.user_input = user_input
