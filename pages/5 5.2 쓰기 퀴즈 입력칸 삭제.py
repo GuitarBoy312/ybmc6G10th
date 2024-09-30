@@ -47,6 +47,9 @@ if 'question_generated' not in st.session_state:
     st.session_state.correct_word = ""
     st.session_state.user_answer = ""  # 사용자 답변을 저장할 새로운 상태 변수
 
+if 'options' not in st.session_state:
+    st.session_state.options = []  # 또는 적절한 초기값
+
 if st.session_state.question_generated:
     st.markdown("### 문제")
     st.write("빈칸에 들어갈 단어를 입력하세요:")
