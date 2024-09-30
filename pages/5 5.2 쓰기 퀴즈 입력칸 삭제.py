@@ -45,10 +45,12 @@ if 'question_generated' not in st.session_state:
     st.session_state.blanked_sentence = ""
     st.session_state.emoji = ""
     st.session_state.correct_word = ""
-    st.session_state.user_input = ""  # user_answer 대신 user_input 사용
 
-if 'options' not in st.session_state:
-    st.session_state.options = []  # 또는 적절한 초기값
+if 'user_input' not in st.session_state:
+    st.session_state.user_input = ""
+
+def clear_input():
+    st.session_state.user_input = ""
 
 if st.session_state.question_generated:
     st.markdown("### 문제")
@@ -56,7 +58,7 @@ if st.session_state.question_generated:
     st.markdown(f'<p style="font-size: 24px; margin-top: 10px;">{st.session_state.blanked_sentence} {st.session_state.emoji}</p>', unsafe_allow_html=True)
       
     with st.form(key='answer_form'):
-        user_input = st.text_input("정답을 입력하세요:", key="user_input")  # key 변경
+        user_input = st.text_input("정답을 입력하세요:", key="user_input", on_change=clear_input)
         submit_button = st.form_submit_button(label='정답 확인')
 
         if submit_button:
@@ -88,7 +90,7 @@ if st.button("새 문제 만들기"):
     st.session_state.emoji = emoji
     st.session_state.correct_word = correct_word
     st.session_state.question_generated = True
-    st.session_state.user_input = ""  # user_answer 대신 user_input 사용
+    clear_input()
     
     # 페이지 새로고침
     st.rerun()
