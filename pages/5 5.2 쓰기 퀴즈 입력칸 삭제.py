@@ -26,7 +26,12 @@ if 'question_generated' not in st.session_state:
     st.session_state.blanked_sentence = ""
     st.session_state.emoji = ""
     st.session_state.correct_word = ""
-    st.session_state.user_input = ""  # 사용자 입력을 저장할 변수 추가
+    st.session_state.key_counter = 0  # 키 카운터 추가
+
+# 새로운 키 생성 함수
+def get_new_key():
+    st.session_state.key_counter += 1
+    return f"user_input_{st.session_state.key_counter}"
 
 # 사용자 입력을 초기화하는 함수
 def reset_input():
@@ -57,7 +62,7 @@ if st.session_state.question_generated:
     st.markdown(f'<p style="font-size: 24px; margin-top: 10px;">{st.session_state.blanked_sentence} {st.session_state.emoji}</p>', unsafe_allow_html=True)
       
     with st.form(key='answer_form'):
-        user_input = st.text_input("정답을 입력하세요:", key="user_input", value=st.session_state.user_input)
+        user_input = st.text_input("정답을 입력하세요:", key=get_new_key())
         submit_button = st.form_submit_button(label='정답 확인')
 
         if submit_button:
