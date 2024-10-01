@@ -18,16 +18,16 @@ SYSTEM_MESSAGE = {
     Do you know about it?
     [지시]
     1. 내가 너에게 [질문] 중 하나를 골라 질문을 할거야. 
-    2. 너는 내 질문을 듣고, [대답] 중 하나를 무작위로 골래 대답을 해.
+    2. 그러면 너는 [대답] 중 하나를 무작위로 골래 대답을 해.
     3. 그 후, 너는 바로 이어서 [질문] 중 하나를 무작위로 골라 질문해. 
-       그러면 내가 대답을 할거야.
-    4. 내가 또 질문을 하면 [대답]을 무작위로 선택해서 대답해.
-    5. 내가 그만하자고 할 때까지 계속 주고 받으며 대화하자.
+       그러면 내가 대답을 하고 [질문] 중 골라서 하나를 물어볼거야.
+    4. 내가 그만하자고 할 때까지 계속 주고 받으며 대화하자.
     [질문]
-    Do you know anything about traditional cookie?🍪
-    Do you know anything about traditional music?🦑
-    Do you know anything about traditional board game?🎤
-    
+    Do you know anything about tiger?🐯
+    Do you know anything about lion?🦁
+    Do you know anything about bear?🐻
+    Do you know anything about elephant?🐘
+    Do you know anything about bird?🎤
     [대답]
     Yes, I know about it. 😊
     No, I have no idea. 🤔  
