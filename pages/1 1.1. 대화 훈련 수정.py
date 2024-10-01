@@ -22,12 +22,12 @@ SYSTEM_MESSAGE = {
     3. 그러면 내가 대답을 하고 [질문] 중 골라서 하나를 물어볼거야.
     4. 내가 그만하자고 할 때까지 계속 주고 받으며 대화하자.
     [질문]
-    Do you know anything about tiger?🐯
-    Do you know anything about lion?🦁
-    Do you know anything about bear?🐻
-    Do you know anything about elephant?🐘
-    Do you know anything about bird?🐤
-    Do you know anything about dinosaur?🦕
+    Do you know anything about baker? 🍞<br>
+    Do you know anything about fashion designer? 👗<br>
+    Do you know anything about car designer? 🚗<br>
+    Do you know anything about model? 🕴️<br>
+    Do you know anything about photographer? 📸<br>
+    Do you know anything about pilot? ✈️<br>
     [대답]
     Yes, I know about it. 😊
     No, I have no idea. 🤔  
@@ -120,12 +120,12 @@ with st.expander("❗❗ 글상자를 펼쳐 사용방법을 읽어보세요 �
     st.write("다음 보기와 같이 잉글링에게 질문과 대답을 해 보세요.")
     st.markdown('''                 
     [질문]<br>
-    🔸Do you know anything about tiger?🐯<br>
-    🔸Do you know anything about lion?🦁<br>
-    🔸Do you know anything about bear?🐻<br>
-    🔸Do you know anything about elephant?🐘<br>
-    🔸Do you know anything about bird?🐤<br>
-    🔸Do you know anything about dinosaur?🦕<br>
+    🔸 Do you know anything about baker? 🍞<br>
+    🔸 Do you know anything about fashion designer? 👗<br>
+    🔸 Do you know anything about car designer? 🚗<br>
+    🔸 Do you know anything about model? 🕴️<br>
+    🔸 Do you know anything about photographer? 📸<br>
+    🔸 Do you know anything about pilot? ✈️<br>
     <br>
     [대답]<br>
     🔹Yes, I know about it. 😊<br>
