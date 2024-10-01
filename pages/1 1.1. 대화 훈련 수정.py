@@ -27,7 +27,8 @@ SYSTEM_MESSAGE = {
     Do you know anything about lion?🦁
     Do you know anything about bear?🐻
     Do you know anything about elephant?🐘
-    Do you know anything about bird?🎤
+    Do you know anything about bird?🐤
+    Do you know anything about dinosaur?🦕
     [대답]
     Yes, I know about it. 😊
     No, I have no idea. 🤔  
@@ -124,7 +125,8 @@ with st.expander("❗❗ 글상자를 펼쳐 사용방법을 읽어보세요 �
     🔸Do you know anything about lion?🦁<br>
     🔸Do you know anything about bear?🐻<br>
     🔸Do you know anything about elephant?🐘<br>
-    🔸Do you know anything about bird?🎤<br>
+    🔸Do you know anything about bird?🐤<br>
+    🔸Do you know anything about dinosaur?🦕<br>
     <br>
     [대답]<br>
     🔹Yes, I know about it. 😊<br>
