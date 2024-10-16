@@ -81,8 +81,8 @@ B: {answer}
     if question_type == "know":
         question = f"{name}은(는) {topics_korean[topic]}에 대해 알고 있나요?"
         correct_answer = "네" if answer == "Yes, I know about it." else "아니오"
-        wrong_answers = ["아니오", "모르겠어요"] if correct_answer == "네" else ["네", "모르겠어요"]
-        options = [correct_answer] + wrong_answers
+        wrong_answer = "아니오" if correct_answer == "네" else "네"
+        options = [correct_answer, wrong_answer]
     else:
         question = f"A는 무엇에 대해 묻고 있나요?"
         correct_answer = topics_korean[topic]
@@ -91,7 +91,19 @@ B: {answer}
 
     random.shuffle(options)
 
-    return f"""
+    if question_type == "know":
+        return f"""
+[영어 대화]
+{dialogue}
+
+[한국어 질문]
+질문: {question}
+A. {options[0]}
+B. {options[1]}
+정답: {chr(65 + options.index(correct_answer))}
+"""
+    else:
+        return f"""
 [영어 대화]
 {dialogue}
 
