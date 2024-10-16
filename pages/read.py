@@ -51,12 +51,16 @@ def generate_conversation_question():
     topics = [
         "pansori",
         "yakgwa",
-        "Hangeul"
+        "Hangeul",
+        "kimchi",
+        "taekwondo"
     ]
     topics_korean = {
         "pansori": "판소리",
         "yakgwa": "약과",
-        "Hangeul": "한글"
+        "Hangeul": "한글",
+        "kimchi": "김치",
+        "taekwondo": "태권도"
     }
     answers = [
         "Yes, I know about it.",
@@ -77,13 +81,14 @@ B: {answer}
     if question_type == "know":
         question = f"{name}은(는) {topics_korean[topic]}에 대해 알고 있나요?"
         correct_answer = "네" if answer == "Yes, I know about it." else "아니오"
-        wrong_answer = "아니오" if correct_answer == "네" else "네"
+        wrong_answers = ["아니오", "모르겠어요"] if correct_answer == "네" else ["네", "모르겠어요"]
+        options = [correct_answer] + wrong_answers
     else:
         question = f"A는 무엇에 대해 묻고 있나요?"
         correct_answer = topics_korean[topic]
-        wrong_answer = random.choice([v for k, v in topics_korean.items() if k != topic])
+        wrong_answers = random.sample([v for k, v in topics_korean.items() if k != topic], 3)
+        options = [correct_answer] + wrong_answers
 
-    options = [correct_answer, wrong_answer]
     random.shuffle(options)
 
     return f"""
@@ -94,6 +99,7 @@ B: {answer}
 질문: {question}
 A. {options[0]}
 B. {options[1]}
+C. {options[2]}
 정답: {chr(65 + options.index(correct_answer))}
 """
 
