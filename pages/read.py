@@ -76,13 +76,19 @@ A: Do you know anything about {topic}?
 B: {answer}
 """
 
-    question_type = random.choice(["know", "ask"])
+    # 이전 문제 유형에 따라 현재 문제 유형 결정
+    if st.session_state.reading_quiz_current_question_type == "know":
+        question_type = "ask"
+    else:
+        question_type = "know"
     
+    st.session_state.reading_quiz_current_question_type = question_type
+
     if question_type == "know":
         question = f"{name}은(는) {topics_korean[topic]}에 대해 알고 있나요?"
         correct_answer = "네" if answer == "Yes, I know about it." else "아니오"
         wrong_answer = "아니오" if correct_answer == "네" else "네"
-        options = [correct_answer, wrong_answer]
+        options = [correct_answer, wrong_answer] + random.sample(["모르겠어요", "들어본 적 있어요"], 2)
     else:
         question = f"A는 무엇에 대해 묻고 있나요?"
         correct_answer = topics_korean[topic]
@@ -91,19 +97,7 @@ B: {answer}
 
     random.shuffle(options)
 
-    if question_type == "know":
-        return f"""
-[영어 대화]
-{dialogue}
-
-[한국어 질문]
-질문: {question}
-A. {options[0]}
-B. {options[1]}
-정답: {chr(65 + options.index(correct_answer))}
-"""
-    else:
-        return f"""
+    return f"""
 [영어 대화]
 {dialogue}
 
@@ -117,7 +111,7 @@ D. {options[3]}
 """
 
 def generate_question():
-    return generate_conversation_question(), "conversation"
+    return generate_conversation_question(), st.session_state.reading_quiz_current_question_type
 
 def parse_question_data(data):
     lines = data.split('\n')
