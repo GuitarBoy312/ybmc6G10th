@@ -9,12 +9,12 @@ client = OpenAI(api_key=st.secrets["openai_api_key"])
 
 # 캐릭터 이름 목록과 성별
 characters = {
-    "Paul": "male", "Jello": "male", "Uju": "male", "Khan": "male", "Eric": "male",
-    "Bora": "female", "Tina": "female", "Amy": "female"
+    "Tim": "male", "Jenny": "female", "Miso": "female", "Rita": "female", "Yejun": "male",
+    "Vianca": "female"
 }
 
-# 주제 목록 변경
-topics = ["판소리", "약과", "한글", "태권도", "김치", "한복"]
+# 주제 목록
+topics = ["판소리", "약과", "한글"]
 
 # 세션 상태 초기화
 if 'listening_quiz_total_questions' not in st.session_state:
@@ -25,8 +25,6 @@ if 'listening_quiz_current_question' not in st.session_state:
     st.session_state.listening_quiz_current_question = None
 if 'audio_tags' not in st.session_state:
     st.session_state.audio_tags = ""
-if 'used_topics' not in st.session_state:
-    st.session_state.used_topics = []
 
 # 사이드바 컨테이너 생성
 if 'listening_quiz_sidebar_placeholder' not in st.session_state:
@@ -56,23 +54,24 @@ def generate_question():
     if random.choice([True, False]):
         speaker_a, speaker_b = speaker_b, speaker_a
     
-    # 사용하지 않은 토픽 선택
-    available_topics = [topic for topic in topics if topic not in st.session_state.used_topics]
-    if not available_topics:
-        st.session_state.used_topics = []
-        available_topics = topics
+    selected_topic = random.choice(topics)
     
-    selected_topic = random.choice(available_topics)
-    st.session_state.used_topics.append(selected_topic)
+    question = f"Do you know anything about {selected_topic}?"
     
-    dialogue = f"{speaker_a}: Do you know anything about {selected_topic}?\n{speaker_b}: Yes, I know about it."
+    answers = [
+        "Yes, I know about it.",
+        "No, I have no idea."
+    ]
     
-    question = f"{speaker_b}은(는) {selected_topic}에 대해 알고 있나요?"
-    options = ["네, 알고 있어요.", "아니요, 전혀 모르겠어요."]
-    correct_answer = "네, 알고 있어요."
+    dialogue = f"{speaker_a}: {question}\n{speaker_b}: {random.choice(answers)}"
+    
+    korean_question = f"{speaker_b}은(는) {selected_topic}에 대해 알고 있나요?"
+    
+    options = ["네, 알고 있습니다.", "아니오, 모릅니다."]
+    correct_answer = "네, 알고 있습니다." if "Yes" in dialogue else "아니오, 모릅니다."
     
     return {
-        "question": question,
+        "question": korean_question,
         "dialogue": dialogue,
         "options": options,
         "correct_answer": correct_answer,
@@ -117,7 +116,7 @@ def create_audio_players(audio_contents):
 # Streamlit UI
 
 st.header("✨인공지능 영어듣기 퀴즈 선생님 퀴즐링🕵️‍♀️")
-st.subheader("🇰🇷한국 문화에 대한 영어듣기 퀴즈🎭")
+st.subheader("어떤것에 대해 알고있는지 묻고 답하기 영어듣기 퀴즈💡")
 st.divider()
 
 with st.expander("❗❗ 글상자를 펼쳐 사용방법을 읽어보세요 👆✅", expanded=False):
