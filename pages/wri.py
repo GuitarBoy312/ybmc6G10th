@@ -88,9 +88,11 @@ if st.session_state.writing_quiz_current_question is not None:
         if user_answer:  # 사용자가 답을 입력했는지 확인
             st.write(f"입력한 답: {user_answer}")
             
-            #st.session_state.writing_quiz_total_questions += 1 #이 줄 삭제
+            # 사용자 답변과 정답에서 쉼표를 제거하고 소문자로 변환하여 비교
+            user_answer_cleaned = user_answer.lower().replace(',', '').strip()
+            correct_word_cleaned = correct_word.lower().replace(',', '').strip()
             
-            if user_answer.lower() == correct_word.lower():
+            if user_answer_cleaned == correct_word_cleaned:
                 st.success("정답입니다!")
                 st.session_state.writing_quiz_correct_answers += 1
             else:
