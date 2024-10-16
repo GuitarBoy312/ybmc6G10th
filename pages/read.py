@@ -112,6 +112,7 @@ B. {options[1]}
 A. {options[0]}
 B. {options[1]}
 C. {options[2]}
+D. {options[3]}
 정답: {chr(65 + options.index(correct_answer))}
 """
 
