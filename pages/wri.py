@@ -32,9 +32,9 @@ def generate_question():
     sentence_index = st.session_state.writing_quiz_question_order[st.session_state.writing_quiz_current_question_index]
     sentence, translation, emoji = sentences[sentence_index]
     words = sentence.split()
-    past_tense_verbs = [word for word in words if word.endswith('ed') or word in ['went', 'made', 'did']]
     
-    correct_word = random.choice(past_tense_verbs)
+    # 모든 단어를 선택 가능하도록 변경
+    correct_word = random.choice(words)
     blank_index = words.index(correct_word)
     
     blanked_words = words.copy()
