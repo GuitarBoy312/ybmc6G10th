@@ -170,7 +170,7 @@ def get_explanation(question, dialogue, correct_answer, selected_option):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "당신은 친절한 초등학교 영어 선생님입니다. 주어진 대화 내용만을 ���탕으로 설명해야 합니다."},
+            {"role": "system", "content": "당신은 친절한 초등학교 영어 선생님입니다. 주어진 대화 내용만을 바탕으로 설명해야 합니다."},
             {"role": "user", "content": prompt}
         ]
     )
