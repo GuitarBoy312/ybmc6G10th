@@ -25,14 +25,8 @@ if 'listening_quiz_current_question' not in st.session_state:
     st.session_state.listening_quiz_current_question = None
 if 'audio_tags' not in st.session_state:
     st.session_state.audio_tags = ""
-if 'previous_characteristic' not in st.session_state:
-    st.session_state.previous_characteristic = None
-if 'previous_question_type' not in st.session_state:
-    st.session_state.previous_question_type = None
-
-# 세션 상태에 사용된 토픽 추적을 위한 변수 추가
 if 'used_topics' not in st.session_state:
-    st.session_state.used_topics = set()
+    st.session_state.used_topics = []
 
 # 사이드바 컨테이너 생성
 if 'listening_quiz_sidebar_placeholder' not in st.session_state:
@@ -62,27 +56,20 @@ def generate_question():
     if random.choice([True, False]):
         speaker_a, speaker_b = speaker_b, speaker_a
     
-    # 모든 토픽을 사용했다면 used_topics를 초기화
-    if len(st.session_state.used_topics) == len(topics):
-        st.session_state.used_topics.clear()
-    
-    # 아직 사용하지 않은 토픽 중에서 선택
+    # 사용하지 않은 토픽 선택
     available_topics = [topic for topic in topics if topic not in st.session_state.used_topics]
+    if not available_topics:
+        st.session_state.used_topics = []
+        available_topics = topics
+    
     selected_topic = random.choice(available_topics)
-    st.session_state.used_topics.add(selected_topic)
+    st.session_state.used_topics.append(selected_topic)
     
     dialogue = f"{speaker_a}: Do you know anything about {selected_topic}?\n{speaker_b}: Yes, I know about it."
     
-    question_type = random.choice(["knowledge", "topic"])
-    
-    if question_type == "knowledge":
-        question = f"{speaker_b}은(는) {selected_topic}에 대해 알고 있나요?"
-        options = ["네, 알고 있어요.", "아니요, 전혀 모르겠어요."]
-        correct_answer = "네, 알고 있어요."
-    else:
-        question = "무엇에 대해 대화하고 있나요?"
-        options = topics
-        correct_answer = selected_topic
+    question = f"{speaker_b}은(는) {selected_topic}에 대해 알고 있나요?"
+    options = ["네, 알고 있어요.", "아니요, 전혀 모르겠어요."]
+    correct_answer = "네, 알고 있어요."
     
     return {
         "question": question,
