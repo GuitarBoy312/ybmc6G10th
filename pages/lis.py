@@ -62,16 +62,9 @@ def generate_question():
     
     dialogue = f"{speaker_a}: Do you know anything about {selected_topic}?\n{speaker_b}: Yes, I know about it."
     
-    question_type = random.choice(["knowledge", "topic"])
-    
-    if question_type == "knowledge":
-        question = f"{speaker_b}은(는) {selected_topic}에 대해 알고 있나요?"
-        options = ["네, 알고 있어요.", "아니요, 전혀 모르겠어요."]
-        correct_answer = "네, 알고 있어요."
-    else:
-        question = "무엇에 대해 대화하고 있나요?"
-        options = topics
-        correct_answer = selected_topic
+    question = f"{speaker_b}은(는) {selected_topic}에 대해 알고 있나요?"
+    options = ["네, 알고 있어요.", "아니요, 전혀 모르겠어요."]
+    correct_answer = "네, 알고 있어요."
     
     return {
         "question": question,
